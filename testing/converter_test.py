@@ -1,6 +1,5 @@
 from docx import Document
 from string import punctuation
-import os
 
 
 def detect_format(r):
@@ -20,12 +19,13 @@ def check_run(r):
 
 
 def create_text(x, c):
-    string = '%s'*3 % (c, x, c)
-    if x[0].isspace():
-        return ' ' + string
-    if x[-1].isspace():
-        return string + ' '
-    return string
+    string = '%s'*3 % \
+        (c, x.strip(), c)
+    # if x[0].isspace():
+    #     return ' ' + string
+    # if x[-1].isspace():
+    #     return string + ' '
+    return string + ' '
 
 
 def check_paragraphs(doc):
@@ -33,8 +33,12 @@ def check_paragraphs(doc):
     for para in doc.paragraphs:
         new = str()
         for r in para.runs:
+            print(r.text)
             if r.text.isspace():
-                new += r.text
+                continue
+            if r.text in punctuation:
+                print('here')
+                new = new[:-1] + r.text
                 continue
             mod = check_run(r)
             new += create_text(r.text, mod)     
@@ -43,6 +47,7 @@ def check_paragraphs(doc):
 
 
 def main():
+    #doc = Document('converter\\example_doc.docx')
     doc = Document('testing\\test_doc.docx')
     for i in check_paragraphs(doc):
         print(i)
