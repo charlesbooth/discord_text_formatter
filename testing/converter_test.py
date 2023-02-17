@@ -18,6 +18,7 @@ def check_run(r):
          form('__', r.underline))
     return ''.join(check)
 
+
 def create_text(x, c):
     string = '%s'*3 % (c, x, c)
     if x[0].isspace():
