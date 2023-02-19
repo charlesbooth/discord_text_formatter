@@ -1,5 +1,5 @@
 # **Discord Text Formatter**
-## *Bold, Underline, Italic*
+## **Bold**, __Underline__, and *Italic* is Currently Supported
 
 The 'converter.py' file will convert text inside a docx file into a simple markdown format that can be pasted into Discord. Just save your text file to the converter folder and run the script. The result will be printed.
 
